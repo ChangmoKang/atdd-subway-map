@@ -23,9 +23,9 @@ public class StationController {
 
     @PostMapping
     public ResponseEntity<StationResponse> createStation(@RequestBody StationRequest stationRequest) {
-        Optional<StationResponse> existLine = stationService.findByName(stationRequest.getName());
+        boolean isExist = stationService.isFoundByName(stationRequest.getName());
 
-        if (existLine.isPresent()) {
+        if (isExist) {
             return ResponseEntity.badRequest().build();
         }
 

@@ -44,9 +44,9 @@ public class LineService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<LineResponse> findByName(String name) {
+    public boolean isFoundByName(String name) {
         return lineRepository.findByName(name)
-                .map(this::createLineResponse);
+                .isPresent();
     }
 
     public void modifyLineById(Long id, LineRequest lineRequest) {

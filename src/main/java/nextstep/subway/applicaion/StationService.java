@@ -36,9 +36,9 @@ public class StationService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<StationResponse> findByName(String name) {
+    public boolean isFoundByName(String name) {
         return stationRepository.findByName(name)
-                .map(this::createStationResponse);
+                .isPresent();
     }
 
     public void deleteStationById(Long id) {

@@ -32,9 +32,9 @@ public class LineController {
 
     @PostMapping
     public ResponseEntity<LineResponse> createLine(@RequestBody LineRequest lineRequest) {
-        Optional<LineResponse> existLine = lineService.findByName(lineRequest.getName());
+        boolean isExist = lineService.isFoundByName(lineRequest.getName());
 
-        if (existLine.isPresent()) {
+        if (isExist) {
             return ResponseEntity.badRequest().build();
         }
 
